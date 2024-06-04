@@ -1,0 +1,47 @@
+.titulo{
+  font-size: 25px;
+  font-weight: bold;
+  text-align: center;
+}
+
+.posicionamiento{
+  display: grid;
+  grid-template-columns: 50% 50%;
+
+}
+
+.posicionamiento-1{
+  display: grid;
+  gap: 20px;
+
+}
+
+.posicionamiento-2{
+  display: grid;
+  grid-template-columns: 50% 50%;
+  align-items: center;
+  justify-items: center;
+  
+}
+.circulo{
+  border: solid 2px black;
+  border-radius: 50%;
+  width: 50px;
+  text-align: center;
+}
+.input-form{
+  text-align: center;
+}
+
+#agregar{
+  background-color: rgb(40, 40, 221);
+}
+.texto{
+  text-align: center;
+}
+
+.cuadro-tareas{
+  width: auto;
+  height:600px;
+  border: solid 1px black;
+}
