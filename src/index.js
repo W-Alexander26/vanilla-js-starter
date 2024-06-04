@@ -1,43 +1,25 @@
-let contador = 0;
-
-let cuadroInformacion = document.getElementById('informacion');
-
-let agregarTareas = document.getElementById('añadir');
-
-let txt = document.getElementById("espacio-texto");
-
-function actualizarContador(contador) {
-
-  document.getElementById('contador').innerHTML = contador;
-
-}
-
-function agregar() {
-
-  actualizarContador(++contador);
-  
-}
-
-async function apiUrl() {
-  try { //si promesa se resuelve, https status 200
-    const response = await fetch('http://localhost:3000/api/task');
-    const data = await response.json(); //Await pausa la ejecución de una función hasta que la promisa sea resuelva
-    console.log(data);
-    //capturar pokemon
-  } catch (error) { //si promesa no se resuelve, https status 400-499 y 500-599
-    console.error(error);
-  }
-}
-
-agregarTareas.addEventListener("click",function () {
-  postTask()
-})
-
 ///puedo importar a posttask para hacerlo modular y compactar el codigo
 
 
+async function getTask() {
 
- const postTask= async () => {
+  try {
+
+    const response = await fetch('http://localhost:3000/api/task');
+
+    const data = await response.json();
+
+    return data
+
+  } catch (error) {
+
+    console.error(error);
+
+  }
+
+}
+
+ const postTask= async (txt) => {
 
  try {
 
@@ -52,7 +34,9 @@ agregarTareas.addEventListener("click",function () {
 
        body: JSON.stringify({
 
-         task: txt.value,
+         task: txt,
+
+         status: "Hecha"
 
        })
 
@@ -60,19 +44,51 @@ agregarTareas.addEventListener("click",function () {
 
      const data = await response.json();
 
-     let div = document.createElement('div')
-
-     div = data
-
-     cuadroInformacion.appendChild(div)
+     console.log(data);
 
  }catch(error) {
 
    console.log(error)
  }
+ window.location.reload()
 
  } 
- postTask()
+ export{postTask,getTask}
+
+ const deleteTask= async (txt) => {
+
+  try {
+ 
+      const response = await fetch('http://localhost:3000/api/task', {
+ 
+        method: 'POST',
+ 
+        headers: {
+ 
+          'Content-Type': 'application/json'
+        },
+ 
+        // body: JSON.stringify({
+ 
+        //   task: txt,
+ 
+        //   status: "Hecha"
+ 
+        // })
+ 
+      });
+ 
+      const data = await response.json();
+ 
+      console.log(data);
+ 
+  }catch(error) {
+ 
+    console.log(error)
+  }
+  // window.location.reload()
+ 
+  } 
 
 
 
