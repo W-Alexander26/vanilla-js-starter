@@ -1,6 +1,3 @@
-///puedo importar a posttask para hacerlo modular y compactar el codigo
-
-
 async function getTask() {
 
   try {
@@ -53,44 +50,36 @@ async function getTask() {
  window.location.reload()
 
  } 
- export{postTask,getTask}
-
- const deleteTask= async (txt) => {
-
-  try {
  
-      const response = await fetch('http://localhost:3000/api/task', {
+ const deleteTask= async (id) => {
+   
+   try {
+     
+     const response = await fetch('http://localhost:3000/api/task/'+id, {
+       
+       method: 'DELETE',
  
-        method: 'POST',
- 
-        headers: {
- 
-          'Content-Type': 'application/json'
+       headers: {
+         
+         'Content-Type': 'application/json'
         },
- 
-        // body: JSON.stringify({
- 
-        //   task: txt,
- 
-        //   status: "Hecha"
- 
-        // })
- 
+
       });
- 
+      
       const data = await response.json();
- 
+      
       console.log(data);
- 
-  }catch(error) {
- 
-    console.log(error)
-  }
-  // window.location.reload()
- 
+      
+    }catch(error) {
+      
+      console.log(error)
+    }
+    
   } 
+  
+export{postTask,getTask,deleteTask}
+  
+  
 
-
-
-
-
+  
+  
