@@ -1,117 +1,78 @@
 async function getTask() {
-
   try {
-
-    const response = await fetch('http://localhost:3000/api/task');
+    const response = await fetch("http://localhost:3000/api/task");
 
     const data = await response.json();
 
-    return data
-
+    return data;
   } catch (error) {
-
     console.error(error);
-
   }
-
 }
 
- const postTask= async (txt) => {
+const postTask = async (txt) => {
+  try {
+    const response = await fetch("http://localhost:3000/api/task", {
+      method: "POST",
 
- try {
+      headers: {
+        "Content-Type": "application/json",
+      },
 
-     const response = await fetch('http://localhost:3000/api/task', {
+      body: JSON.stringify({
+        task: txt,
 
-       method: 'POST',
+        status: false,
+      }),
+    });
 
-       headers: {
+    const data = await response.json();
 
-         'Content-Type': 'application/json'
-       },
+    console.log(data);
+  } catch (error) {
+    console.log(error);
+  }
+  //  window.location.reload()
+};
 
-       body: JSON.stringify({
+const deleteTask = async (id) => {
+  try {
+    const response = await fetch("http://localhost:3000/api/task/" + id, {
+      method: "DELETE",
 
-         task: txt,
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
 
-         status: "unchecked"
+    const data = await response.json();
 
-       })
+    console.log(data);
+  } catch (error) {
+    console.log(error);
+  }
+};
 
-     });
+const putTask = async (txt) => {
+  try {
+    txt.status = !txt.status;
 
-     const data = await response.json();
+    const response = await fetch(`http://localhost:3000/api/task/${txt.id}`, {
+      method: "PUT",
 
-     console.log(data);
+      headers: {
+        "Content-Type": "application/json",
+      },
 
- }catch(error) {
+      body: JSON.stringify(txt),
+    });
 
-   console.log(error)
- }
- window.location.reload()
+    const data = await response.json();
 
- } 
- 
- const deleteTask= async (id) => {
-   
-   try {
-     
-     const response = await fetch('http://localhost:3000/api/task/'+id, {
-       
-       method: 'DELETE',
- 
-       headers: {
-         
-         'Content-Type': 'application/json'
-        },
+    console.log(data);
+  } catch (error) {
+    console.log(error);
+  }
+};
 
-      });
-      
-      const data = await response.json();
-      
-      console.log(data);
-      
-    }catch(error) {
-      
-      console.log(error)
-    }
-    
-  } 
-
-  const putTask= async (txt) => {
-    console.log(txt);
-
-    try {
-      txt.status==="unchecked"? txt.status ="checked" : txt.status ="unchecked"
-   
-        const response = await fetch(`http://localhost:3000/api/task/${txt.id}`, {
-   
-          method: 'PUT',
-   
-          headers: {
-   
-            'Content-Type': 'application/json'
-          },
-   
-          body: JSON.stringify(
-            txt   
-          )
-   
-        });
-   
-        const data = await response.json();
-   
-        console.log(data);
-   
-    }catch(error) {
-   
-      console.log(error)
-    }
-    
-    } 
-  
-export{postTask,getTask,deleteTask,putTask}
-  
-  
-
-  
-  
+export { postTask, getTask, deleteTask, putTask };
