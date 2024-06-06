@@ -33,7 +33,7 @@ async function getTask() {
 
          task: txt,
 
-         status: "Hecha"
+         status: "unchecked"
 
        })
 
@@ -76,8 +76,40 @@ async function getTask() {
     }
     
   } 
+
+  const putTask= async (txt) => {
+    console.log(txt);
+
+    try {
+      txt.status==="unchecked"? txt.status ="checked" : txt.status ="unchecked"
+   
+        const response = await fetch(`http://localhost:3000/api/task/${txt.id}`, {
+   
+          method: 'PUT',
+   
+          headers: {
+   
+            'Content-Type': 'application/json'
+          },
+   
+          body: JSON.stringify(
+            txt   
+          )
+   
+        });
+   
+        const data = await response.json();
+   
+        console.log(data);
+   
+    }catch(error) {
+   
+      console.log(error)
+    }
+    
+    } 
   
-export{postTask,getTask,deleteTask}
+export{postTask,getTask,deleteTask,putTask}
   
   
 

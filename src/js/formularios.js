@@ -1,6 +1,7 @@
-import { postTask, getTask, deleteTask } from "./index.js";
+import { postTask, getTask, deleteTask, putTask } from "./index.js";
 
-// let contador = 0;
+let contador = 0
+
 
 let cuadroInformacion = document.getElementById('informacion');
 
@@ -8,20 +9,30 @@ let agregarTareas = document.getElementById('añadir');
 
 let txt = document.getElementById("espacio-texto");
 
-// let txt = document.getElementById("espacio-texto");
-
 // let cargarInfo = await postTask()
 
 txt.addEventListener("keypress", (event) => {
-  if (event.key === "Enter") {
-    
+
+  if (event.key === "Enter" && txt.value.trim() !== "" ) {
+
     postTask(txt.value)
+  } else {
+    document.getElementById('requerimiento').innerHTML = "Ingrese un texto"
   }
+  ///Tengo que mostrar una alerta que me muestre que tiene que tiene que ingresar texto
 
 });
+
 agregarTareas.addEventListener("click",function () {
 
-  postTask(txt.value)
+  if (txt.value.trim() !== "") {
+    ///Tengo que mostrar una alerta que me muestre que tiene que tiene que ingresar texto
+
+    postTask(txt.value)
+    
+  } else {
+    document.getElementById('requerimiento').innerHTML = "Ingrese un texto"
+  }
 });
 
 async function subirTareas() {
@@ -58,22 +69,40 @@ async function subirTareas() {
 
   })
 
+  check.addEventListener("click",function () {
+
+    let tareasHechas = putTask(almacen[index])
+
+    for (let index = 0; index < tareasHechas.length; index++) {
+
+      if (tareasHechas[index]) {
+        
+        actualizarContador(++contador)
+      }    
+    }
+  })
 }
 
 }
 subirTareas()
 
-// function actualizarContador(contador) {
+function actualizarContador(contador) {
 
-//   document.getElementById('contador').innerHTML = contador;
-
-// }
-
-// function agregar() {
-
-//   actualizarContador(++contador);
+  document.getElementById('contador').innerHTML = contador;
   
-// }
+  
+}
+
+
+
+
+
+
+
+
+
+
+
 
 
 //  const div = document.createElement('div');
