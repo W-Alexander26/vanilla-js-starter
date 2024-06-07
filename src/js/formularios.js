@@ -7,13 +7,25 @@ let infoStatusTareas = document.getElementById("infoStatusTareas");
 
 document.addEventListener("DOMContentLoaded", async () => {
   await cuadroTareasVacio();
+
 });
+
+// infoStatusTareas.innerHTML = "";
+// function cambiosDeEstado() {
+//   if (cuadroInformacion.length===0) {
+//     vacio = document.createElement('p')
+//     cuadroInformacion.appendChild(vacio)
+    
+//   }
+  
+// }
 
 txt.addEventListener("keypress", async (event) => {
   if (event.key === "Enter" && txt.value.trim() !== "") {
     document.getElementById("requerimiento").innerHTML = "";
     await postTask(txt.value); ////puedo crear un funcion del if y else, para abreviar codigo y usar parametros
     /// tengo que hacer que el display persista
+    infoStatusTareas.style.display = "none";
     await subirTareas();
     txt.innerHTML = "";
   } else {
@@ -25,6 +37,7 @@ agregarTareas.addEventListener("click", async function () {
   if (txt.value.trim() !== "") {
     document.getElementById("requerimiento").innerHTML = "";
     await postTask(txt.value);
+    infoStatusTareas.style.display = "none";
     await subirTareas();
     txt.innerHTML = "";
   } else {
@@ -36,11 +49,13 @@ agregarTareas.addEventListener("click", async function () {
 async function cuadroTareasVacio() {
   try {
     let tareas = await getTask();
+
     if (tareas.length === 0) {
-      infoStatusTareas.innerHTML = "No existen tareas";
-      cuadroInformacion.innerHTML = ""; // Limpiar el cuadro de tareas
+      console.log("hola");
+      infoStatusTareas.innerHTML = ""
     } else {
-      infoStatusTareas.innerHTML = ""; // Limpiar el mensaje de "No existen tareas"
+      console.log("hola else");
+      infoStatusTareas.innerHTML = ""; //es dentro de subir tareaas
       await subirTareas();
     }
   } catch (error) {
@@ -68,7 +83,14 @@ async function subirTareas() {
 
     btnImg.addEventListener("click", function () {
       deleteTask(btnImg.id);
+
       div.remove();
+
+      console.log(div.childNodes.length)
+      if (div.childNodes.length > 0) {
+        infoStatusTareas.style.display = "block";
+        infoStatusTareas.innerHTML = "No Existen Tareas";
+      }
     });
 
     check.addEventListener("click", async function () {
