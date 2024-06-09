@@ -52,7 +52,7 @@ async function cuadroTareasVacio() {
 
     if (tareas.length === 0) {
       console.log("hola");
-      infoStatusTareas.innerHTML = ""
+      infoStatusTareas.innerHTML = "No Existen Tareas"
     } else {
       console.log("hola else");
       infoStatusTareas.innerHTML = ""; //es dentro de subir tareaas
@@ -87,10 +87,14 @@ async function subirTareas() {
       div.remove();
 
       console.log(div.childNodes.length)
-      if (div.childNodes.length > 0) {
+      if (cuadroInformacion.children.length === 0) {
         infoStatusTareas.style.display = "block";
-        infoStatusTareas.innerHTML = "No Existen Tareas";
-      }
+        // infoStatusTareas.innerHTML = "No Existen Tareas";
+       } //else {
+      //   console.log("estoy aqui");
+      //   div.childNodes.length < 0
+      //   infoStatusTareas.innerHTML = "No Existen Tareas";
+      // }
     });
 
     check.addEventListener("click", async function () {
