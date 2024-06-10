@@ -11,28 +11,24 @@
 
 	<h1>La aplicación esta corriendo!</h1>
 
-	<p class="titulo">Tareas por hacer</p>
+	<p class="titulo">Tareas por hacer</p><!--Titulo-->
 
-	<div class="posicionamiento">
+	<div class="posicionamiento"><!--div encargado de posicionar a la izquierda: el input y el botón y a la derecha: texto de las tareas subidas y el contador.-->
 
-		<div class="posicionamiento-1">
+		<div class="posicionamiento-1"><!--div encargado de posicionar el input sobre el botón-->
 
-			<input type="text" placeholder="Ingrese Tarea" class="input-form" id="espacio-texto">
-			<p id="requerimiento"></p>
-
-			<button id="añadir">Agregar</button>
+			<input type="text" placeholder="Ingrese Tarea" class="input-form" id="espacio-texto"><!--input que almacena el contenido de las tareas.-->
+			<p id="requerimiento"></p><!--etiqueta de texto encarga de mostrar si subio el texto correctamente.-->
+      <button id="añadir">Agregar</button><!--boton encargado de subir el texto con un click-->
 
 		</div>
 
 
-		<div class="posicionamiento-2">
+		<div class="posicionamiento-2"><!--div encargado de posicionar el texto "tareas completadas" y el contador, uno al lado del otro.-->
+			<p class="texto">Tareas <br> Completadas</p><!--etiqueta de texto encargada de mostrar las tareas.-->
 
-			<p class="texto">Tareas <br> Completadas</p>
-
-			<div class="circulo">
-
-				<p id="contadorM">0</p>
-
+			<div class="circulo"><!--div en forma de circulo que almacena un numero cambiante acorde a las tareas realizadas.-->
+				<p id="contadorM">0</p><!--etiqueta dentro del circulo que muestra el numero cambiante cuando se selecciona una tareas.-->
 			</div>
 
 		</div>
@@ -41,15 +37,15 @@
 
 	<br>
 
-	<div class="cuadro-tareas" >
-		<p id="infoStatusTareas">No Existen Tareas</p>
-		<div id="informacion">
+	<div class="cuadro-tareas" ><!--div encargado de conteneder y mostrar cada tarea subida.-->
+		<p id="infoStatusTareas">No Existen Tareas</p><!--etiqueta de texto encargada de mostrar si "existen tareas o no"-->
+		<div id="informacion"><!--div que almacenara cada tarea subida.-->
 
 		</div>
 
 	</div>
 
-	<script src="js/formularios.js" type="module"></script>
+	<script src="js/formularios.js" type="module"></script><!--etiqueta encarga de conectar HTML con js.-->
 
 </body>
 
